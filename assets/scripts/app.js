@@ -11,6 +11,7 @@ class DOMHelper {
     const element = document.getElementById(elementId);
     const destinationElement = document.querySelector(newDestinationSelector);
     destinationElement.append(element);
+    element.scrollIntoView({ behavior: "smooth" });
   }
 }
 
@@ -38,8 +39,8 @@ class Component {
 }
 
 class ToolTip extends Component {
-  constructor(closeNotifierFunction, text) {
-    super();
+  constructor(closeNotifierFunction, text, hostElementId) {
+    super(hostElementId);
     this.closeNotifier = closeNotifierFunction; // /**close info btn element */  this.create
     this.text = text;
     this.create(); // /**function made to always run */
@@ -54,7 +55,29 @@ class ToolTip extends Component {
     // /**attach more info btn element to dom*/
     const toolTipElement = document.createElement("div");
     toolTipElement.className = "card";
-    toolTipElement.textContent = this.text;
+
+    // /**adding more info to DOM */
+    const toolTipTemplate = document.getElementById("tooltip");
+    const toolTipBody = document.importNode(toolTipTemplate.content, true);
+    toolTipBody.querySelector("p").textContent = this.text;
+    toolTipElement.append(toolTipBody);
+
+    // /**getting host element dom position */
+    const hostElPosLeft = this.hostElement.offsetLeft;
+    const hostElPosTop = this.hostElement.offsetTop;
+    const hostElHeight = this.hostElement.clientHeight;
+    const parentElementScrolling = this.hostElement.parentElement.scrollTop;
+
+    // /**Defining host element coordinate position */
+    const x = hostElPosLeft + 20;
+    const y = hostElPosTop + hostElHeight - parentElementScrolling - 10;
+
+    toolTipElement.style.position = "absolute";
+    toolTipElement.style.left = x + "px";
+    toolTipElement.style.top = y + "px";
+
+    console.log(this.hostElement.getBoundingClientRect());
+
     toolTipElement.addEventListener("click", this.closeToolTip);
     this.element = toolTipElement;
   }
@@ -76,10 +99,11 @@ class ProjectItem {
     }
     const projectElement = document.getElementById(this.id);
     const toolTipText = projectElement.dataset.extraInfo;
-    // console.log(toolTipText);
+
     const tooltip = new ToolTip(
       () => (this.hasActiveToolTip = false),
-      toolTipText
+      toolTipText,
+      this.id
     );
     tooltip.attach();
     this.hasActiveToolTip = true;
@@ -127,7 +151,6 @@ class ProjectList {
   }
 
   addProject(project) {
-    // console.log(project);
     // /**take array of active projects to finished projects */
     this.projects.push(project);
     DOMHelper.moveElement(project.id, `#${this.type}-projects ul`);
@@ -135,8 +158,6 @@ class ProjectList {
   }
 
   switchProject(projectId) {
-    // const projectIndex = this.projects.findIndex(p => p.id === projectId);
-    // this.projects.splice(projectIndex, 1);
     this.switchHandler(this.projects.find((p) => p.id === projectId)); // /**passes id to addProjects */
     this.projects = this.projects.filter((p) => p.id !== projectId);
   }
@@ -152,7 +173,20 @@ class App {
     finishedProjectList.setSwitchHandlerFunction(
       activeProjectList.addProject.bind(activeProjectList)
     );
+
+    const timerId = setTimeout(this.startAnalytics, 3000);
+    document.getElementById("stop-analytics-btn").addEventListener(
+      "click",
+      addEventListener("click", () => {
+        clearTimeout(timerId);
+      })
+    );
+  }
+  static startAnalytics() {
+    const analyticsScript = document.createElement("script");
+    analyticsScript.src = "/assets/scripts/analytics.js";
+    analyticsScript.defer = true;
+    document.head.append(analyticsScript);
   }
 }
-
 App.init();
