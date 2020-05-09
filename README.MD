@@ -1,6 +1,10 @@
+![alt text](/assets/images/planner.PNG)
+
+URL:https://vigilant-tesla-3de625.netlify.app/
+
 ### PROJECT PLANNER
 
-This application was built in order to understand the basic core concepts of JS Object Oriented Programming: Manipulating DOM Object elements, parsing element data, passing method references, moving DOM elements,getting element box dimensions,working with elements box positions, and loading dynamic scripts. Also using event listeners in order to add drag and drop functionality.This application also helped me understand JS classes, constructor functions and the this keyword.
+This application was built in order to understand the basic core concepts of JS Object Oriented Programming: Manipulating DOM Object elements, parsing element data, passing method references, moving DOM elements,getting element box dimensions,working with elements box positions, and loading dynamic scripts. This application also helped me understand JS classes, constructor functions and the this keyword.
 
 ### Usage
 
@@ -9,6 +13,7 @@ This application is not intended to be used on a regular basis, the main concept
 Once you load the page:
 
 1. Click on any button, a modal will render.
+2. If you open the developers console with Ctrl + Shift + i (Windows command may vary) Option + ⌘ + C. (macOS), and click Start analytics button, a dynamic script will run which will log to the console.
 
 ### To download:
 
