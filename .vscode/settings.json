@@ -4,6 +4,8 @@
     "Mhelper",
     "afterbegin",
     "beforebegine",
-    "beforeend"
+    "beforeend",
+    "tip",
+    "tool"
   ]
 }

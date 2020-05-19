@@ -1,6 +1,6 @@
 import Component from "./Component.js";
 
-export default class ToolTip extends Component {
+export class ToolTip extends Component {
   constructor(closeNotifierFunction, text, hostElementId) {
     super(hostElementId);
     this.closeNotifier = closeNotifierFunction; // /**close info btn element */  this.create
