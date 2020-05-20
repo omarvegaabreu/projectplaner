@@ -5,6 +5,8 @@
     "afterbegin",
     "beforebegine",
     "beforeend",
+    "contenthash",
+    "devtool",
     "readonly",
     "tip",
     "tool"

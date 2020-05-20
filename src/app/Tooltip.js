@@ -1,17 +1,16 @@
-import Component from "./Component.js";
+import Component from "./Component";
 
 export class ToolTip extends Component {
   constructor(closeNotifierFunction, text, hostElementId) {
     super(hostElementId);
     this.closeNotifier = closeNotifierFunction; // /**close info btn element */  this.create
     this.text = text;
+    this.closeToolTip = () => {
+      this.detach();
+      this.closeNotifier();
+    };
     this.create(); // /**function made to always run */
   }
-
-  closeToolTip = () => {
-    this.detach();
-    this.closeNotifier();
-  };
 
   create() {
     // /**attach more info btn element to dom*/

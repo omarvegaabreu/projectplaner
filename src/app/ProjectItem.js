@@ -1,10 +1,11 @@
-import DOMHelper from "../util/DOMhelper.js";
-// import ToolTip from "./Tooltip.js";
+import DOMHelper from "../util/DOMhelper";
+// import ToolTip from "./ToolTip";
 
 export default class ProjectItem {
-  hasActiveToolTip = false;
+  // hasActiveToolTip = false;
 
   constructor(id, updateProjectListsFunction, type) {
+    this.hasActiveToolTip = false;
     this.id = id;
     this.updateProjectListsHandler = updateProjectListsFunction;
     this.connectMoreInfoButton();
