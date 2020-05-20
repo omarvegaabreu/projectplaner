@@ -1,0 +1,23 @@
+{
+  "name": "projectplaner",
+  "version": "1.0.0",
+  "description": "![alt text](/assets/images/planner.PNG)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omarvegaabreu/projectplaner.git"
+  },
+  "keywords": [],
+  "author": "Omar Vega",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omarvegaabreu/projectplaner/issues"
+  },
+  "homepage": "https://github.com/omarvegaabreu/projectplaner#readme",
+  "devDependencies": {
+    "eslint": "^7.0.0"
+  }
+}
