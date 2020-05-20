@@ -5,6 +5,7 @@
     "afterbegin",
     "beforebegine",
     "beforeend",
+    "readonly",
     "tip",
     "tool"
   ]
